@@ -23,7 +23,15 @@ export default function App() {
       <button onClick={async () => console.log(await asyncFinallyGetQuotes())}>
         asyncFinallyGetQuotes
       </button>
-     
+      <button onClick={async () => console.log(await thenFinallyGetQuotes())}>
+        thenFinallyGetQuotes
+      </button>
+      <button onClick={async () => console.log('this one here!!!', await thenAsyncGetQuotes())}>
+        thenAsyncGetQuotes
+      </button>
+      <button onClick={async () => console.log(await asyncThenGetQuotes())}>
+        asyncThenGetQuotes
+      </button>
     </>
     )
 }
