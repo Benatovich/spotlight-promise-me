@@ -17,7 +17,13 @@ export default function App() {
       <button onClick={async () => console.log(await asyncTryGetQuotes())}>
         asyncTryGetQuotes
       </button>
-
+      <button onClick={async () => console.log(await thenTryGetQuotes())}>
+        thenTryGetQuotes
+      </button>
+      <button onClick={async () => console.log(await asyncFinallyGetQuotes())}>
+        asyncFinallyGetQuotes
+      </button>
+     
     </>
     )
 }

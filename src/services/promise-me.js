@@ -24,7 +24,7 @@ export function thenGetQuotes() {
     const result = fetch('https://futuramaapi.herokuapp.com/api/quotes/1')
         .then((res) => res.json())
         .then((result) => ({ quote: result[0], totalResults: result.length }))
-        // .then(() => console.log('2. .then fetch complete'));
+        // .then((result) => console.log('2. .then fetch complete'));
 
     console.log('2. .then fetch complete');
     console.log('3. after .then fetch');
@@ -55,11 +55,42 @@ export async function asyncTryGetQuotes() {
 /**
  * TODO: Exercise 4: use `fetch`, `.then`, and `.catch` to get the same data from exercise 3 while handling errors
  */
+export function thenTryGetQuotes() {
+    console.log('1. before .then fetch');
 
+    const result = fetch('https://futuramaapi.herokuapp.com/api/quotes/1')
+        .then((res) => res.json())
+        .then((result) => ({ quote: result[0], totalResults: result.length }))
+        .then((result) => {
+            console.log('2. .then fetch complete');
+            return result;
+        })
+        .catch((error) => console.error('an error occurred!'));
+
+        console.log('3. after .then fetch');
+        return result;
+}
 
 /**
  * TODO: Exercise 5: use `fetch`, async/await, and a try/catch/finally statement to get data from an API, handle errors, then console.log('All done!') upon completion
  */
+export async function asyncFinallyGetQuotes() {
+    try {
+        console.log('1. before async fetch');
+
+        const res = await fetch('https://futuramaapi.herokuapp.com/api/quotes/1');
+        console.log('2. async fetch complete');
+
+        const result = await res.json();
+        console.log('3. after async fetch');
+
+        return { quote: result[0], totalResults: result.length };
+    } catch (error) {
+        console.error('uh oh! another error!');
+    } finally {
+        console.log('all done!');
+    }
+}
 
 /**
  * TODO: Exercise 6: use `fetch`, `.then`, `.catch`. and `.finally` to get the same data from exercise 5 while handling errors and calling console.log('All done!') upon completion
